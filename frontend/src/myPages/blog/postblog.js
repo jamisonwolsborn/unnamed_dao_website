@@ -23,10 +23,6 @@ export default class BlogAdd extends React.Component {
         author: { author },
         title: { title },
         content: { content },
-        auth: {
-          username: "jamison",
-          password: "CorrectHorse!",
-        },
       })
       .catch((error) => {
         console.log(error);
