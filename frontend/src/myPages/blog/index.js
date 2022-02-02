@@ -1,11 +1,6 @@
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 import Card from "@mui/material/Card";
-import PersonList from "myPages/blog/queryblog";
 import BlogAdd from "myPages/blog/postblog";
 
 function Blog() {
@@ -21,13 +16,6 @@ function Blog() {
         }}
         sticky
       />
-      <MKBox component="section" py={12}>
-        <Container>
-          <Grid container item xs={12} lg={4} py={1} mx="auto">
-            <MKInput label="Title" fullWidth />
-          </Grid>
-        </Container>
-      </MKBox>
       <Card
         sx={{
           p: 2,
@@ -41,7 +29,6 @@ function Blog() {
       >
         <div>
           <BlogAdd />
-          <PersonList />
         </div>
       </Card>
     </>
