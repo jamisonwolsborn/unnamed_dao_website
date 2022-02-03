@@ -43,6 +43,8 @@ import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMob
 // Material Kit 2 React base styles
 import breakpoints from "assets/theme/base/breakpoints";
 
+import { useEthers } from "@usedapp/core";
+
 function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");
@@ -55,6 +57,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
   const [mobileView, setMobileView] = useState(false);
 
   const openMobileNavbar = () => setMobileNavbar(!mobileNavbar);
+
+  const { activateBrowserWallet, account } = useEthers();
 
   useEffect(() => {
     // A function that sets the display state for the DefaultNavbarMobile.
@@ -507,7 +511,6 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
               ) : (
                 <MKButton
                   component="a"
-                  href={action.route}
                   target="_blank"
                   rel="noreferrer"
                   variant={
@@ -517,8 +520,9 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                   }
                   color={action.color ? action.color : "info"}
                   size="small"
+                  onClick={activateBrowserWallet}
                 >
-                  {action.label}
+                  {account !== null ? "Connected!" : action.label}
                 </MKButton>
               ))}
           </MKBox>
@@ -551,7 +555,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
 
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "Material Kit 2",
+  brand: "Unnamed DAO",
   transparent: false,
   light: false,
   action: false,

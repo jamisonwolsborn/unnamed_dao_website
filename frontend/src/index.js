@@ -17,10 +17,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter } from "react-router-dom";
 import App from "App";
+import { Mumbai, DAppProvider, Config } from "@usedapp/core";
+
+const config: Config = {
+  readOnlyChainId: Mumbai.chainId,
+  readOnlyUrls: {
+    [Mumbai.chainId]: "https://rpc-endpoints.superfluid.dev/mumbai",
+  },
+};
 
 ReactDOM.render(
-  <HashRouter>
-    <App />
-  </HashRouter>,
+  <DAppProvider config={config}>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </DAppProvider>,
   document.getElementById("root")
 );

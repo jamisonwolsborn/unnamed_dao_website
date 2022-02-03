@@ -10,6 +10,7 @@ import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
+import TabsSimple from "myPages/blog/tabs";
 
 export default class BlogAdd extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class BlogAdd extends React.Component {
     this.setState({ [target.name]: target.value });
   };
 
-  createBlog = async () => {
+  updateBlog = async () => {
     const { author, title, content } = this.state;
     const res = await axios
       .post("http://localhost:8000/api/post", {
@@ -40,10 +41,26 @@ export default class BlogAdd extends React.Component {
     console.log(res);
   };
 
+  createBlog = async () => {
+    const { author, title, content } = this.state;
+    const res = await axios
+      .post("http://localhost:8000/api/post", {
+        author: { author }.author,
+        title: { title }.title,
+        content: { content }.content,
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(res);
+    window.location.href = "/presentation";
+  };
+
   render() {
     return (
-      <MKBox component="section" py={12} mt={15}>
+      <MKBox component="section" py={12} mt={5}>
         <Container>
+          <TabsSimple />
           <Grid container item justifyContent="center" xs={10} lg={7} mx="auto" textAlign="center">
             <MKTypography variant="h3" mb={1}>
               Blog Submission
@@ -55,6 +72,7 @@ export default class BlogAdd extends React.Component {
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <MKInput
+                      id="authorInput"
                       variant="standard"
                       label="Author Name"
                       fullWidth
@@ -65,7 +83,6 @@ export default class BlogAdd extends React.Component {
                   <Grid item xs={12}>
                     <MKInput
                       variant="standard"
-                      type="email"
                       label="Title"
                       fullWidth
                       name="title"
@@ -85,7 +102,12 @@ export default class BlogAdd extends React.Component {
                   </Grid>
                 </Grid>
                 <Grid container item justifyContent="center" xs={12} my={2}>
-                  <MKButton type="submit" variant="gradient" color="dark" fullWidth>
+                  <MKButton onClick={this.updateBlog} variant="gradient" color="dark" fullWidth>
+                    Update Blog
+                  </MKButton>
+                </Grid>
+                <Grid container item justifyContent="center" xs={12} my={2}>
+                  <MKButton onClick={this.createBlog} variant="gradient" color="dark" fullWidth>
                     Post Blog
                   </MKButton>
                 </Grid>

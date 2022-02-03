@@ -1,5 +1,5 @@
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import routes from "routes";
+import navbarRoutes from "navbarRoutes";
 import Card from "@mui/material/Card";
 import BlogAdd from "myPages/blog/postblog";
 
@@ -7,7 +7,7 @@ function Blog() {
   return (
     <>
       <DefaultNavbar
-        routes={routes}
+        routes={navbarRoutes}
         action={{
           type: "external",
           route: "https://www.creative-tim.com/product/material-kit-react",
